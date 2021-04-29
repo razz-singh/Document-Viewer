@@ -1,0 +1,61 @@
+
+<head>
+    <title>Editor</title>
+</head>
+<body>
+<div>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus cupiditate ipsa expedita
+        officiis numquam. Officiis beatae, eius laborum veniam, ratione harum illum nemo reiciendis
+        natus expedita iste enim, quae ex.</p>
+    <input id="a" type="text" placeholder="Name" onClick="enableTextBox(1)" readonly disabled
+           onchange="myFunction(this)"/>
+    <input id="b" type="text" placeholder="Last Name" onClick="enableTextBox(2)" readonly disabled
+           onchange="myFunction(this)"/>
+    <input id="c" type="text" placeholder="Place" onClick="enableTextBox(1)" readonly disabled
+           onchange="myFunction(this)"/>
+    <input id="d" type="text" placeholder="Date" onClick="enableTextBox(1)" readonly disabled
+           onchange="myFunction(this)"/>
+    <input type="checkbox" id="checkbox" name="checkbox" value="unchecked"
+           onclick="enableCheckBox(3)" checked readonly disabled onchange="myFunction(this)"/>
+    <label for="checkbox"> Accept the terms</label><br/>
+    <label for="file"><img id="img" src="signature-with-a-pen.svg" alt="add signature" width="150"
+                           height="100" onclick="enableImageBox(1)"
+                           onchange="myFunction(this)"/></label><br/>
+    <input type="file" id="file" style="display:none" onclick="enableImageBox(1)" readonly
+           disabled/>
+
+
+</div>
+</body>
+<script>
+
+    function myFunction(ele){
+        switch(ele.type){
+            case "text":
+                var e = document.getElementById(ele.id);
+                e.setAttribute("value", ele.value) ;
+                break;
+            case "checkbox":
+                var e = document.getElementById(ele.id);
+                e.setAttribute("checked", ele.checked) ;
+                break;
+        }
+        var e = document.getElementById(ele.id);
+        e.setAttribute("value", ele.value) ;
+        document.getElementById("aaa").innerHTML = ele.value + ele.value;
+    }
+
+
+
+    const reader = new FileReader();
+    const fileInput = document.getElementById("file");
+    const img = document.getElementById("img");
+    reader.onload = e => {
+    img.src = e.target.result;
+    }
+    fileInput.addEventListener('change', e => {
+    const f = e.target.files[0];
+    reader.readAsDataURL(f);
+    })
+
+</script>
